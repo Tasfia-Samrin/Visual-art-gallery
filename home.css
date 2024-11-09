@@ -1,0 +1,32 @@
+/* Banner Section */
+.banner {
+    background: url('images/banner.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+  }
+  
+  .banner h2, .banner p {
+    color: #fff;
+  }
+  
+  .card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  header form {
+    display: flex;
+}
+
+header form .form-control {
+    width: 200px;
+}
+
+header form .btn {
+    color: #fff;
+    border-color: #fff;
+}
+
+header form .btn:hover {
+    background-color: #555;
+    border-color: #555;
+}  
