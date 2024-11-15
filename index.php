@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Art Gallery</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -141,6 +142,6 @@
     </div>
     </div>
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3">
+    <!--<footer class="bg-dark text-white text-center p-3">
         <p>&copy; 2024 Visual Art Gallery. All rights reserved.</p>
-    </footer>
+    </footer> -->

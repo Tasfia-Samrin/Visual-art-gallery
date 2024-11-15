@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd824e639a8009c5829925f1a385164b894fa28f
 <form action="" method="post" class ="mb-2">
     <div class="input-group w-90 mb-2">
         <span class="input-group-text bg-dark" id="basic-addon1">

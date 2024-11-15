@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin page</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+  rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   
 </head>
@@ -33,8 +34,8 @@
 
             <div class="button text-center text-dark p-4">
                 <button class="my-3"><a href="" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
-                <button><a href="home.php?insert_art_type" class="nav-link text-dark bg-bg-primary mg-1">View Art</a></button>
-                <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Insert Art Type</a></button>
+                <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">View Art</a></button>
+                <button><a href="index.php?insert_type" class="nav-link text-dark bg-bg-primary mg-1">Insert Art Type</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Manage order</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">List of Customer</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">List of Artists</a></button>
@@ -46,16 +47,15 @@
             </div>
         </div>
     </div>
-
   </div>
-    
-     <div class="container">
-      <?php
-      if(isset($_GET['insert_art_type'])){
-        include('insert_art_type.php')
+
+  <div class="container my-5">
+     <?php
+      if(isset($_GET['insert_type'])){
+        include('insert_types.php');
       }
       ?>
      </div>
-
+  
   </body>
 </html>
