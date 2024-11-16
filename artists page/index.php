@@ -19,10 +19,7 @@
             <a href="#" class="nav-link text-white">Welcome</a> 
         </li>
         </ul>
-        <ul class="navbar-nav ms-auto">  <li class="nav-item">
-            <button class="nav-link text-white btn btn-outline-light">Logout</button>
-          </li>
-        </ul>
+       
       </div>
     </nav>
 
@@ -40,6 +37,8 @@
             <div class="button text-center text-dark p-4">
                 <button class="my-3"><a href="" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">View Art</a></button>
+                <button><a href="update_profile.php" class="nav-link text-dark bg-bg-primary mg-1">Update Profile</a></button>
+                <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Logout</a></button>
                
                <!--<br> <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Logout</a></button> -->
                 <!--<button><a href="" class="nav-link text-dark bg-bg-primary mg-1"></a></button>
