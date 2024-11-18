@@ -33,7 +33,7 @@
             </div>
 
             <div class="button text-center text-dark p-4">
-                <button class="my-3"><a href="" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
+                <button class="my-3"><a href="insert_art_admin.php" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">View Art</a></button>
                 <button><a href="index.php?insert_type" class="nav-link text-dark bg-bg-primary mg-1">Insert Art Type</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Manage order</a></button>
