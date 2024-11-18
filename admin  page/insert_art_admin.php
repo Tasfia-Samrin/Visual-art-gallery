@@ -8,12 +8,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
   rel="stylesheet">
   <!--<link rel="stylesheet" href="../style.css"> -->
-
   
 </head>
 
 <body class="bg-light">
-    <div class="container mt-3">
+    <div class="container mt-4">
         <h2 class="text-center">Insert Arts</h2>
 
         <form action="" method="post" enctype="multipart/form-data">
@@ -44,6 +43,49 @@
                 <option value="">Type 5</option>
                 <option value="">Type 6</option>
             </select>
+            </div>
+
+             <!-- Art 1 -->
+             <div class="form-outline mb-4 w-50 m-auto ">
+            <label for="Art_image1" class="form-label mt-4">Art 1</label>
+            <input type="file" name="Art_image1" id="Art_image1" 
+            class="form-control" required="required">
+            </div>
+
+               <!-- Art 2 -->
+             <div class="form-outline mb-4 w-50 m-auto ">
+            <label for="Art_image2" class="form-label mt-4">Art 2</label>
+            <input type="file" name="Art_image2" id="Art_image2" 
+            class="form-control" required="required">
+            </div>
+
+             <!-- Art 3 -->
+             <div class="form-outline mb-4 w-50 m-auto ">
+            <label for="Art_image3" class="form-label mt-4">Art 3</label>
+            <input type="file" name="Art_image3" id="Art_image3" 
+            class="form-control" required="required">
+            </div>
+
+             <!-- Art 4 -->
+             <div class="form-outline mb-4 w-50 m-auto ">
+            <label for="Art_image4" class="form-label mt-4">Art 4</label>
+            <input type="file" name="Art_image4" id="Art_image4" 
+            class="form-control" required="required">
+            </div>
+
+             <!-- Price -->
+             <div class="form-outline mb-4 w-50 m-auto ">
+            <label for="price" class="form-label mt-4">Art Price</label>
+            <input type="text" name="price" id="price" 
+            class="form-control mb-4" placeholder="Enter The Price" autocomplete="off"
+            required="required">
+            </div>
+
+
+             <!-- Button -->
+             <div class="form-outline mb-4 w-50 m-auto ">
+              <input type="submit" name="insert_art" class="btn btn-dark mb-3 px-3"
+              value="Insert Arts">
             </div>
 
 
