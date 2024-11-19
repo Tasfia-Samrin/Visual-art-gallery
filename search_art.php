@@ -14,7 +14,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="h4">Visual Art Gallery</h1>
             <nav>
-                <a href="index.php" class="text-white mx-2">Home</a>
+                <a href="#" class="text-white mx-2">Home</a>
                 <a href="#" class="text-white mx-2">Gallery</a>
                 <a href="#" class="text-white mx-2">Artists</a>
                 <a href="#" class="text-white mx-2">Exhibitions</a>
@@ -41,7 +41,7 @@
     <!-- Featured Artworks -->
      
     <div class="row">
-      <!--<div class="col-md-1"></div>  <!-- Add an empty column for left spacing -->
+      <!--<div class="col-md-1"></div>  
       <div class="col-md-10">
         <div class="row">
           <!-- First three images -->
@@ -50,7 +50,8 @@
               <img src="./images/a.jfif" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title 
+                    and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-info">Add to cart</a>
                 <a href="#" class="btn btn-secondary">View More</a>
               </div>
@@ -61,7 +62,8 @@
               <img src="./images/history1.jfif" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title
+                     and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-info">Add to cart</a>
                 <a href="#" class="btn btn-secondary">View More</a>
               </div>
@@ -72,7 +74,8 @@
               <img src="./images/3.jpg" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title 
+                    and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-info">Add to cart</a>
                 <a href="#" class="btn btn-secondary">View More</a>
               </div>
@@ -84,7 +87,8 @@
               <img src="./images/nature1.jfif" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title 
+                    and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-info">Add to cart</a>
                 <a href="#" class="btn btn-secondary">View More</a>
               </div>
@@ -95,7 +99,8 @@
               <img src="./images/river1.jfif" class="card-img-top" alt="..."> <!-- Updated image source -->
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title
+                     and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-info">Add to cart</a>
                 <a href="#" class="btn btn-secondary">View More</a>
               </div>
@@ -106,7 +111,8 @@
               <img src="./images/history2.jpg" class="card-img-top" alt="..."> <!-- Updated image source -->
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title
+                 and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-info">Add to cart</a>
                 <a href="#" class="btn btn-secondary">View More</a>
               </div>
@@ -144,7 +150,3 @@
        </div>
     </div>
     </div>
-    <!-- Footer -->
-    <footer class="bg-light text-dark text-center p-3">
-        <p>&copy; 2024 Visual Art Gallery. All rights reserved.</p>
-    </footer>

@@ -35,7 +35,7 @@
             </div>
 
             <div class="button text-center text-dark p-4">
-                <button class="my-3"><a href="" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
+                <button class="my-3"><a href="insert_art_artist.php" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">View Art</a></button>
                 <button><a href="update_profile.php" class="nav-link text-dark bg-bg-primary mg-1">Update Profile</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Logout</a></button>
