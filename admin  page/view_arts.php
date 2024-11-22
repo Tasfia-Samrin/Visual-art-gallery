@@ -1,22 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Arts</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-        <h2 class="text-center"> All Arts</h2>
-        <table class="table table-bordered-mt-5">
-     <thead class="bg-dark"></thead>
-        </table>
-
-</body>
-</html>
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
