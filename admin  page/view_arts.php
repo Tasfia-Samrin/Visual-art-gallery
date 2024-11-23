@@ -51,7 +51,6 @@
                 <th>Price</th>
                 <th>Total Sold</th>
                 <th>Delete</th>
-                <th>Approval</th>
             </tr>
         </thead>
         <tbody id="art-table">
