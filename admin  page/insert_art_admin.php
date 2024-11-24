@@ -36,12 +36,14 @@
              <label for="art_types" class="form-label">Select Art Type</label>
             <select name="art_types" id="" class="form-control">
                 <option value="">Select Type</option>
+                
+                    
                 <option value="">Type 1</option>
                 <option value="">Type 2</option>
                 <option value="">Type 3</option>
                 <option value="">Type 4</option>
                 <option value="">Type 5</option>
-                <option value="">Type 6</option>
+                <option value="">Type 6</option> 
             </select>
             </div>
 
