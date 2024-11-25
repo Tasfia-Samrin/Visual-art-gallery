@@ -17,7 +17,7 @@
                 <a href="index.php" class="text-white mx-2">Home</a>
                 <a href="#" class="text-white mx-2">Gallery</a>
                 <a href="#" class="text-white mx-2">Artists</a>
-                <a href="#" class="text-white mx-2">Exhibitions</a>
+                <a href="exhibition.php" class="text-white mx-2">Exhibitions</a>
                 <a href="#" class="text-white mx-2">Login</a>
             </nav>
             <form class="form-inline ml-3">
@@ -41,7 +41,7 @@
     <!-- Featured Artworks -->
      
     <div class="row">
-      <!--<div class="col-md-1"></div>  <!-- Add an empty column for left spacing -->
+      
       <div class="col-md-10">
         <div class="row">
           <!-- First three images -->
@@ -114,12 +114,14 @@
           </div>
         </div>
       </div>
+      <!--art type -->
       <div  class="col-md-2 bg-dark">
         <ul class="navbar-nav me-auto text-center">
           <li class="nav-item bg-bg-primary text-white">
             <a href="#" class="nav-link text-light 
             font-weight-bold"><h4>Art Type</a></h4>
-          </li>   
+          </li>  
+          
           <li class="nav-item bg-bg-primary text-white">
             <a href="#" class="nav-link text-light">
               Type 1</a>
