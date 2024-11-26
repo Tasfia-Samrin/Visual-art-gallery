@@ -1,3 +1,7 @@
+<?php
+include('include/connect.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,27 +125,20 @@
             <a href="#" class="nav-link text-light 
             font-weight-bold"><h4>Art Type</a></h4>
           </li>  
-          
-          <li class="nav-item bg-bg-primary text-white">
-            <a href="#" class="nav-link text-light">
-              Type 1</a>
-          </li>  
-          <li class="nav-item bg-bg-primary text-white">
-            <a href="#" class="nav-link text-light">
-              Type 2</a>
-          </li>  
-          <li class="nav-item bg-bg-primary text-white">
-            <a href="#" class="nav-link text-light">
-              Type 3</a>
-          </li> 
-          <li class="nav-item bg-bg-primary text-white">
-            <a href="#" class="nav-link text-light ">
-              Type 4</a>
-          </li> 
-          <li class="nav-item bg-bg-primary text-white">
-            <a href="#" class="nav-link text-light">
-              Type 5</a>
-          </li> 
+
+          <?php
+           $select_type="Select * from `arttype`";
+           $result_type=mysqli_query($conn,$select_type);
+            // $row_data=mysqli_fetch_assoc($result_type);
+            // echo $row_data['arttype_title']
+            while($row_data=mysqli_fetch_assoc($result_type)){
+              $arttype_title=$row_data['arttype_title'];
+              $arttype_id=$row_data['arttype_id'];
+              echo "<li class='nav-item bg-bg-primary text-white'>
+              <a href='index.php?arttype=$arttype_id' class='nav-link text-light'>$arttype_title</a>
+              </li>  ";
+             }
+          ?>
         </ul>
        </div>
     </div>
