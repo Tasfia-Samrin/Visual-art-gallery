@@ -39,7 +39,7 @@
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Manage order</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">List of Customer</a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">List of Artists</a></button>
-                <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Manage Exhibition</a></button>
+                <button><a href="manage_exhibition.php" class="nav-link text-dark bg-bg-primary mg-1">Manage Exhibition</a></button>
                <br> <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Logout</a></button>
                 <!--<button><a href="" class="nav-link text-dark bg-bg-primary mg-1"></a></button>
                 <button><a href="" class="nav-link text-dark bg-bg-primary mg-1"></a></button>-->
