@@ -43,40 +43,72 @@
         </div>
     </header>
 
+    <!-- Connection with database -->
+    <?php
+    $host = "localhost";
+    $user = "root";
+    $password = "";
+    $database = "online_art_gallery";
+
+    $con = mysqli_connect($host, $user, $password, $database);
+
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Ongoing Exhibitions Query
+    $OngoingExhibition_query = "SELECT name, start_date, end_date, location, description
+                                FROM exhibition 
+                                WHERE CURRENT_DATE() BETWEEN start_date AND end_date;";
+    $OngoingExhibition_result = mysqli_query($con, $OngoingExhibition_query);
+
+    // Upcoming Exhibitions Query
+    $UpcomingExhibition_query = "SELECT name, start_date, end_date, location, description
+                                FROM exhibition 
+                                WHERE CURRENT_DATE() < start_date;";
+    $UpcomingExhibition_result = mysqli_query($con, $UpcomingExhibition_query);
+    ?>
+
     <!-- Main Content -->
     <div class="container mt-5">
         <!-- Ongoing Exhibitions -->
         <section>
             <h2>Ongoing Exhibitions</h2>
-            <div class="exhibition-item">
-                <h3>Nature's Wonders</h3>
-                <p><strong>Description:</strong> Explore the beauty of nature through breathtaking artworks.</p>
-                <p><strong>Date:</strong> 2024-11-25</p>
-                <p><strong>Location:</strong> Downtown Art Center</p>
-            </div>
-            <div class="exhibition-item">
-                <h3>Abstract Horizons</h3>
-                <p><strong>Description:</strong> Dive into the world of abstract art and discover new perspectives.</p>
-                <p><strong>Date:</strong> 2024-11-28</p>
-                <p><strong>Location:</strong> City Art Hall</p>
-            </div>
+
+            <?php
+            if ($OngoingExhibition_result && mysqli_num_rows($OngoingExhibition_result) > 0):
+                while ($row = mysqli_fetch_assoc($OngoingExhibition_result)): ?>
+                    <div class="exhibition-item">
+                        <h3><?= htmlspecialchars($row['name']); ?></h3>
+                        <p><strong>Description:</strong> <?= htmlspecialchars($row['description']); ?></p>
+                        <p><strong>Start Date:</strong> <?= htmlspecialchars($row['start_date']); ?></p>
+                        <p><strong>End Date:</strong> <?= htmlspecialchars($row['end_date']); ?></p>
+                        <p><strong>Location:</strong> <?= htmlspecialchars($row['location']); ?></p>
+                    </div>
+                <?php endwhile;
+            else: ?>
+                <p>No ongoing exhibitions at the moment.</p>
+            <?php endif; ?>
         </section>
 
         <!-- Upcoming Exhibitions -->
         <section class="mt-5">
             <h2>Upcoming Exhibitions</h2>
-            <div class="exhibition-item">
-                <h3>Colors of Life</h3>
-                <p><strong>Description:</strong> An exhibition showcasing the vibrant hues of life.</p>
-                <p><strong>Date:</strong> 2024-12-05</p>
-                <p><strong>Location:</strong> Modern Art Gallery</p>
-            </div>
-            <div class="exhibition-item">
-                <h3>Historic Impressions</h3>
-                <p><strong>Description:</strong> Artworks inspired by history and cultural heritage.</p>
-                <p><strong>Date:</strong> 2024-12-12</p>
-                <p><strong>Location:</strong> Heritage Art Museum</p>
-            </div>
+
+            <?php
+            if ($UpcomingExhibition_result && mysqli_num_rows($UpcomingExhibition_result) > 0):
+                while ($row = mysqli_fetch_assoc($UpcomingExhibition_result)): ?>
+                    <div class="exhibition-item">
+                        <h3><?= htmlspecialchars($row['name']); ?></h3>
+                        <p><strong>Description:</strong> <?= htmlspecialchars($row['description']); ?></p>
+                        <p><strong>Start Date:</strong> <?= htmlspecialchars($row['start_date']); ?></p>
+                        <p><strong>End Date:</strong> <?= htmlspecialchars($row['end_date']); ?></p>
+                        <p><strong>Location:</strong> <?= htmlspecialchars($row['location']); ?></p>
+                    </div>
+                <?php endwhile;
+            else: ?>
+                <p>No upcoming exhibitions found.</p>
+            <?php endif; ?>
         </section>
     </div>
 
@@ -84,5 +116,10 @@
     <footer class="bg-light text-dark text-center p-3 mt-5">
         <p>&copy; 2024 Visual Art Gallery. All rights reserved.</p>
     </footer>
+
+    <?php
+    // Close database connection
+    mysqli_close($con);
+    ?>
 </body>
 </html>
