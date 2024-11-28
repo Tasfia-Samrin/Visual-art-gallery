@@ -38,19 +38,16 @@
                     <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter exhibition description" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="date">Date</label>
+                    <label for="date">Start Date</label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">End Date</label>
                     <input type="date" id="date" name="date" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
                     <input type="text" id="location" name="location" class="form-control" placeholder="Enter exhibition location" required>
-                </div>
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" class="form-control" required>
-                        <option value="Ongoing">Ongoing</option>
-                        <option value="Upcoming">Upcoming</option>
-                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Exhibition</button>
             </form>
