@@ -36,7 +36,7 @@
                 <button class="my-3"><a href="insert_art_admin.php" class="nav-link text-dark bg-bg-primary mg-1">Insert Art</a></button>
                 <button><a href="index.php?insert_types" class="nav-link text-dark bg-bg-primary mg-1">Insert Art Type</a></button>
                 <button><a href="view_arts.php" class="nav-link text-dark bg-bg-primary mg-1">View Art</a></button>
-                <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Manage order</a></button>
+                <button><a href="" class="nav-link text-dark bg-bg-primary mg-1">Order details</a></button>
                 <button><a href="list_of_customer.php" class="nav-link text-dark bg-bg-primary mg-1">List of Customer</a></button>
                 <button><a href="list_of_artists.php" class="nav-link text-dark bg-bg-primary mg-1">List of Artists</a></button>
                 <button><a href="manage_exhibition.php" class="nav-link text-dark bg-bg-primary mg-1">Manage Exhibition</a></button>
