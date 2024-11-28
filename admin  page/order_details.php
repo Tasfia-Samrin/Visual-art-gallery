@@ -1,8 +1,11 @@
 <?php
 include('../include/connect.php');
 
-// Fetch artists data from the database
-$query = "select name, email, phone,bio,details from artist";
+// Fetch orders data from the database
+$query = "select o.orderID,o.customerID,c.name,od.artworkID,od.quantity,o.orderDate,o.price,o.status
+          from orders as o join order_details od join customer as c
+          on o.orderID=od.orderID and o.customerID=c.id";
+
 $result = $conn->query($query);
 ?>
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ $result = $conn->query($query);
     th {
         background-color: #f2f2f2; 
         font-weight: bold;         
-        color: #000;               
+        color: #000;             
     }
     th, td {
         padding: 30px;
@@ -55,15 +58,18 @@ $result = $conn->query($query);
 </head>
 <body>
     <div class="container">
-        <h2>Artists Details</h2>
+        <h2>Order Details</h2>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Bio</th>
-                    <th>Website</th>
+                    <th>Order Id</th>
+                    <th>Customer Id</th>
+                    <th>Customer Name</th>
+                    <th>Artwork Id</th>
+                    <th>Quantity</th>
+                    <th>Order Date</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,16 +79,19 @@ $result = $conn->query($query);
                     // Fetch each record 
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
+                                <td>{$row['orderID']}</td>
+                                <td>{$row['customerID']}</td>
                                 <td>{$row['name']}</td>
-                                <td>{$row['email']}</td>
-                                <td>{$row['phone']}</td>
-                                <td>{$row['bio']}</td>
-                                <td>{$row['details']}</td>
+                                <td>{$row['artworkID']}</td>
+                                <td>{$row['quantity']}</td>
+                                <td>{$row['orderDate']}</td>
+                                <td>{$row['price']}</td>
+                                <td>{$row['status']}</td>
                               </tr>";
                     }
                 } else {
                     echo "<tr>
-                            <td colspan='5' class='text-center'>No artist found</td>
+                            <td colspan='8' class='text-center'>No order placed yet!</td>
                           </tr>";
                 }
                 ?>

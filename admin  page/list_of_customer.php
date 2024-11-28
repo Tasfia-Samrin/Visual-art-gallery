@@ -26,9 +26,9 @@ $result = $conn->query($query);
         border: 1px solid black;
     }
     th {
-        background-color: #f2f2f2; /* Consistent header background */
-        font-weight: bold;         /* Ensure bold text */
-        color: #000;               /* Set text color to black */
+        background-color: #f2f2f2; 
+        font-weight: bold;         
+        color: #000;              
     }
     th, td {
         padding: 30px;
