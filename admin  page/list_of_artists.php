@@ -1,8 +1,8 @@
 <?php
 include('../include/connect.php');
 
-// Fetch customer data from the database
-$query = "select id, name, email, phone, address FROM customer";
+// Fetch artists data from the database
+$query = "select name, email, phone,bio,details from artist";
 $result = $conn->query($query);
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Details</title>
+    <title>Artists Details</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
     h2 {
@@ -55,15 +55,15 @@ $result = $conn->query($query);
 </head>
 <body>
     <div class="container">
-        <h2>Customer Details</h2>
+        <h2>Artists Details</h2>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Address</th>
+                    <th>Bio</th>
+                    <th>Website</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,16 +73,16 @@ $result = $conn->query($query);
                     // Fetch each record 
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
-                                <td>{$row['id']}</td>
                                 <td>{$row['name']}</td>
                                 <td>{$row['email']}</td>
                                 <td>{$row['phone']}</td>
-                                <td>{$row['address']}</td>
+                                <td>{$row['bio']}</td>
+                                <td>{$row['details']}</td>
                               </tr>";
                     }
                 } else {
                     echo "<tr>
-                            <td colspan='5' class='text-center'>No customers found</td>
+                            <td colspan='5' class='text-center'>No artist found</td>
                           </tr>";
                 }
                 ?>
