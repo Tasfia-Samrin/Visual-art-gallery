@@ -44,78 +44,75 @@ include('include/connect.php');
 
     <!-- Featured Artworks -->
      
-    <div class="row">
+    <div class="row px-3">
       
       <div class="col-md-10">
         <div class="row">
-          <!-- First three images -->
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="./images/a.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-info">Add to cart</a>
-                <a href="#" class="btn btn-secondary">View More</a>
+          
+          <?php
+
+            if(!isset($_GET['arttype'])){
+                 
+            $select_query="Select * from `art_work` order by rand() limit 0,5";
+            $result_query=mysqli_query($conn,$select_query);
+
+           // $row=mysqli_fetch_assoc($result_query);
+            //echo $row['title'];
+            while($row=mysqli_fetch_assoc($result_query)){
+                   $art_id=$row['id'];
+                   $art_title=$row['title'];
+                   $art_arttype_id=$row['arttype_id'];
+                   $art_description=$row['description'];
+                   $art_price=$row['price'];
+                   $art_image=$row['image'];
+               echo "<div class='col-md-4 mb-2'>
+            <div class='card'>
+             <img src='./admin_page\arts_images/$art_image' class='card-img-top' alt='...'>
+              <div class='card-body'>
+                <h5 class='card-title'>$art_title</h5>
+                <p class='card-text'>$art_description</p>
+                <a href='#' class='btn btn-info'>Add to cart</a>
+                <a href='#' class='btn btn-secondary'>View More</a>
               </div>
             </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="./images/history1.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-info">Add to cart</a>
-                <a href="#" class="btn btn-secondary">View More</a>
+          </div>";
+            }
+          }
+  ?>
+  <?php
+          if(isset($_GET['arttype'])){
+               $arttype_id=  $_GET['arttype'];
+            $select_query="Select * from `art_work` where arttype_id=$arttype_id";
+            $result_query=mysqli_query($conn,$select_query);
+            $num_of_rows=mysqli_num_rows( $result_query);
+           if($num_of_rows==0){
+            echo"<h2 class='text-center'> There is no art for this art type</h2>";
+           }
+            while($row=mysqli_fetch_assoc($result_query)){
+                   $art_id=$row['id'];
+                   $art_title=$row['title'];
+                   $art_arttype_id=$row['arttype_id'];
+                   $art_description=$row['description'];
+                   $art_price=$row['price'];
+                   $art_image=$row['image'];
+               echo "<div class='col-md-4 mb-2'>
+            <div class='card'>
+             <img src='./admin_page\arts_images/$art_image' class='card-img-top' alt='...'>
+              <div class='card-body'>
+                <h5 class='card-title'>$art_title</h5>
+                <p class='card-text'>$art_description</p>
+                <a href='#' class='btn btn-info'>Add to cart</a>
+                <a href='#' class='btn btn-secondary'>View More</a>
               </div>
             </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="./images/3.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-info">Add to cart</a>
-                <a href="#" class="btn btn-secondary">View More</a>
-              </div>
-            </div>
-          </div>
-          <!-- Fourth and fifth images side by side in the same row -->
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="./images/nature1.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-info">Add to cart</a>
-                <a href="#" class="btn btn-secondary">View More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="./images/river1.jfif" class="card-img-top" alt="..."> <!-- Updated image source -->
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-info">Add to cart</a>
-                <a href="#" class="btn btn-secondary">View More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="./images/history2.jpg" class="card-img-top" alt="..."> <!-- Updated image source -->
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-info">Add to cart</a>
-                <a href="#" class="btn btn-secondary">View More</a>
-              </div>
-            </div>
-          </div>
+          </div>";
+            }
+          }
+          ?>
+          
+          
+
+          
         </div>
       </div>
       <!--art type -->
