@@ -85,7 +85,7 @@
                 <?php while ($row = mysqli_fetch_assoc($viewArt_result)): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id']); ?></td>
-                        <td> <img src="arts_images/<?php echo $row['imageURL']; ?>"></td>
+                        <td> <img src="../artists page/arts_images/<?php echo $row['imageURL']; ?>"width="100px"></td>
                         <td><?= htmlspecialchars($row['title']); ?></td>
                         <td><?= htmlspecialchars($row['arttype_title']); ?></td>
                         <td><?= htmlspecialchars($row['description']); ?></td>
