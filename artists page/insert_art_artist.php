@@ -1,127 +1,148 @@
+<?php
+// Include the database connection
+include('../include/connect.php');
+
+// Backend Logic
+if (isset($_POST['insert_art'])) {
+    // Fetching form data using $_POST
+    $art_id = $_POST['art_id'];
+    $art_title = $_POST['art_title'];
+    $art_type = $_POST['art_types'];
+    $date = $_POST['creation_date'];
+    $medium = $_POST['medium'];
+    $dimension = $_POST['dimension'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $status = 'true';
+
+    
+    $art_image = $_FILES['Art_image']['name'];
+    $temp_image = $_FILES['Art_image']['tmp_name'];
+
+    
+    if ($art_id == '' || $art_title == '' ||  $date == ''  || $medium == '' ||$dimension == ''  ||$description == '' || $art_type == '' || $price == '' || $art_image == '') {
+        echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
+    } else {
+        
+
+        // Check for duplicate art ID
+        $check_query = "SELECT * FROM art_work WHERE id = '$art_id'";
+        $check_result = mysqli_query($conn, $check_query);
+        if (mysqli_num_rows($check_result) > 0) {
+            echo "<p style='color: red; text-align: center;'>Art ID already exists. Please use a unique ID.</p>";
+        } else {
+
+            move_uploaded_file($temp_image,"./arts_images/$art_image");
+            // Insert data into the art_work table
+            $insert_arts = "INSERT INTO `art_work` (id, title, arttype_id,year_created,medium,dimension,description, price, is_available, image) 
+                            VALUES ('$art_id', '$art_title', '$art_type','$date','$medium','$dimension','$description', '$price', '$status', '$art_image')";
+
+            $result_query = mysqli_query($conn, $insert_arts);
+
+            // Check if the query was successful
+            if ($result_query) {
+                echo "<p style='color: green; text-align: center;'>Art successfully inserted!</p>";
+            } else {
+                echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
+            }
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Profile Editing Form</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .form-container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        form label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #555;
-        }
-
-        form input, form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        form button {
-            width: 100%;
-            padding: 10px;
-            background-color: darkslategray;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        form button:hover {
-            background-color: whitesmoke;
-            color:black;
-        }
-    </style>
+    <title>Insert Arts - Admin</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="form-container">
-        <h2>Insert Art</h2>
-        <form action="update_artist_profile.php" method="POST">
-           
-            <!-- Art Title -->
-            <label for="art_title">Art Title</label>
-            <input type="text" id="art_title" name="art_title" placeholder="Enter the title" required>
 
-            <!--Description-->
-            <label for="description">Art Description</label>
-            <textarea id="description" name="description" rows="4"
-             placeholder="Enter Description..."></textarea>
-            <!--<input type="text" id="description" name="description"
-             placeholder="Enter Description" required> -->
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2 class="text-center">Insert Arts</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <!-- ID -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="id" class="form-label">Art ID</label>
+                <input type="number" name="art_id" id="id" 
+                class="form-control" placeholder="Enter the ID" autocomplete="off" required>
+            </div>
+
+            <!-- Art Title -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="art_title" class="form-label mt-4">Art Title</label>
+                <input type="text" name="art_title" id="art_title" 
+                class="form-control" placeholder="Enter the art title" autocomplete="off" required>
+            </div>
 
             <!-- Art Type -->
-             
-            <label for="art_types" class="form-label">Select Art Type</label>
-            <select name="art_types" id="" class="form-control">
-                <option value="">Select Type</option>
-                <option value="">Type 1</option>
-                <option value="">Type 2</option>
-                <option value="">Type 3</option>
-                <option value="">Type 4</option>
-                <option value="">Type 5</option>
-                <option value="">Type 6</option>
-            </select>
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="art_types" class="form-label mt-4">Select Art Type</label>
+                <select name="art_types" id="art_types" class="form-control" required>
+                    <option value="">Select Type</option>
 
-          <!-- Art 1 -->
-          <div class="form-outline mb-4 w-50 m-auto ">
-            <label for="Art_image1" class="form-label mt-4">Art 1</label>
-            <input type="file" name="Art_image1" id="Art_image1" 
-            class="form-control" required="required">
+                    <?php
+                        // Fetching available art types from the database
+                        $select_query = "SELECT * FROM arttype";
+                        $result_query = mysqli_query($conn, $select_query);
+                        while ($row = mysqli_fetch_assoc($result_query)) {
+                            $art_type_title = $row['arttype_title'];
+                            $art_type_id = $row['arttype_id'];
+                            echo "<option value='$art_type_id'>$art_type_title</option>";
+                        }
+                    ?>   
+                </select>
             </div>
 
-               <!-- Art 2 -->
-             <div class="form-outline mb-4 w-50 m-auto ">
-            <label for="Art_image2" class="form-label mt-4">Art 2</label>
-            <input type="file" name="Art_image2" id="Art_image2" 
-            class="form-control" required="required">
+            <!-- Date of creation -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="creation_date">Date of Creation</label>
+                <input type="date" name="creation_date" id="creation_date"  
+                class="form-control" placeholder="Enter the date of creation" autocomplete="off" required>
+            </div>
+                        
+
+            <!-- Medium -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="medium" class="form-label mt-4">Art Medium</label>
+                <input type="text" name="medium" id="medium" 
+                class="form-control" placeholder="Enter the medium of your artwork" autocomplete="off" required>
             </div>
 
-             <!-- Art 3 -->
-             <!--<div class="form-outline mb-4 w-50 m-auto ">-->
-            <label for="Art_image3" class="form-label mt-4">Art 3</label>
-            <input type="file" name="Art_image3" id="Art_image3" 
-            class="form-control" required="required">
-            <!--</div> -->
+            <!-- Dimension -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="dimension" class="form-label mt-4">Art Dimension</label>
+                <input type="text" name="dimension" id="dimension" 
+                class="form-control" placeholder="Enter the dimension" autocomplete="off" required>
+            </div>
 
-             <!-- Art 4 -->
-             <!--<div class="form-outline mb-4 w-50 m-auto "> -->
-            <label for="Art_image4" class="form-label mt-4">Art 4</label>
-            <input type="file" name="Art_image4" id="Art_image4" 
-            class="form-control" required="required">
-            <!--</div>-->
+            <!-- Description -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="description" class="form-label mt-4">Art Description</label>
+                <input type="text" name="description" id="description" 
+                class="form-control" placeholder="Enter the description" autocomplete="off" required>
+            </div>
+
+            <!-- Price -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="price" class="form-label mt-4">Art Price</label>
+                <input type="text" name="price" id="price" 
+                class="form-control" placeholder="Enter the price" autocomplete="off" required>
+            </div>
+
+            <!-- Art Image -->
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="Art_image" class="form-label mt-4">Art Image</label>
+                <input type="file" name="Art_image" id="Art_image" class="form-control" required>
+            </div>
 
             <!-- Submit Button -->
-            <button type="submit">Submit</button>
+            <div class="form-outline mb-4 w-50 m-auto">
+                <input type="submit" name="insert_art" class="btn btn-dark mb-3 px-3 mt-4" value="Insert Art">
+            </div>
         </form>
     </div>
 </body>
