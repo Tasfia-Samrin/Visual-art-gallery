@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-5">Manage Exhibitions</h1>
+       
 
         <!-- Add Exhibition Form -->
         <div class="form-section">
