@@ -22,7 +22,7 @@ include('include/connect.php');
                 <a href="gallery.php" class="text-white mx-2">Gallery</a>
                 <a href="#" class="text-white mx-2">Artists</a>
                 <a href="exhibition.php" class="text-white mx-2">Exhibitions</a>
-                <a href="#" class="text-white mx-2">Login</a>
+                <a href="./user/user_type.php" class="text-white mx-2">Login</a>
             </nav>
             <form class="form-inline ml-3">
               <input class="form-control mr-sm-2" type="search" placeholder="Search artworks..."

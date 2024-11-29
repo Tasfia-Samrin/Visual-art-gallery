@@ -11,18 +11,18 @@ if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if (isset($_POST['admin_login'])) {
+if (isset($_POST['artist_login'])) {
     // Fetching form data using $_POST
-    $admin_email = $_POST['email'];
-    $admin_password = $_POST['password'];
+    $artist_email = $_POST['email'];
+    $artist_password = $_POST['password'];
 
-    if ($admin_email  == '' ||$admin_password  == '' ) {
+    if ($artist_email  == '' ||$artist_password  == '' ) {
         echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
     } else {
         //Verification
         $verify_match ="select * 
-                        from admin 
-                        where email='$admin_email' and password='$admin_password'";
+                        from artist
+                        where email='$artist_email' and password='$artist_password'";
         
 
         $check_match=mysqli_query($con, $verify_match);
@@ -91,7 +91,7 @@ if (isset($_POST['admin_login'])) {
         <div class="row d-flex justify-content-center">
             <!-- Image Section -->
             <div class="col-lg-6 col-xl-5">
-                <img src="../images/registration.jpg" alt="Admin Registration" class="img-fluid">
+                <img src="../images/registration.jpg" alt="Artist Registration" class="img-fluid">
             </div>
 
             <!-- Form Section -->
@@ -115,7 +115,7 @@ if (isset($_POST['admin_login'])) {
 
                         <!-- Submit Button -->
                         <div class="text-center">
-                            <input type="submit" class="btn btn-primary btn-block" name="admin_login" value="Login">
+                            <input type="submit" class="btn btn-primary btn-block" name="artist_login" value="Login">
                             <!-- Text and Link to Login Page -->
                             <p class="mt-3">
                                 Do no have an account? 

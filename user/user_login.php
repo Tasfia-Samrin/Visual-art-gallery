@@ -1,3 +1,47 @@
+<?php
+// Database connection
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "online_art_gallery";
+
+$con = mysqli_connect($host, $user, $password, $database);
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST['customer_login'])) {
+    // Fetching form data using $_POST
+    $customer_email = $_POST['email'];
+    $customer_password = $_POST['password'];
+
+    if ($customer_email  == '' ||$customer_password  == '' ) {
+        echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
+    } else {
+        //Verification
+        $verify_match ="select * 
+                        from customer 
+                        where email='$customer_email' and password='$customer_password'";
+        
+
+        $check_match=mysqli_query($con, $verify_match);
+
+
+        if (mysqli_num_rows($check_match ) == 0) {
+            echo "<p style='color: red; text-align: center;'>Incorrect values!</p>";
+        }
+         else {
+            header('Location: index.php');
+        }
+     }
+    }
+    else if (isset($_POST['customer_login'])){
+
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +95,7 @@
         <div class="row d-flex justify-content-center">
             <!-- Image Section -->
             <div class="col-lg-6 col-xl-5">
-                <img src="../images/registration.jpg" alt="Admin Registration" class="img-fluid">
+                <img src="../images/registration.jpg" alt="Customer Registration" class="img-fluid">
             </div>
 
             <!-- Form Section -->
@@ -75,7 +119,7 @@
 
                         <!-- Submit Button -->
                         <div class="text-center">
-                            <input type="submit" class="btn btn-primary btn-block" name="admin_login" value="Login">
+                            <input type="submit" class="btn btn-primary btn-block" name="customer_login" value="Login">
                             <!-- Text and Link to Login Page -->
                             <p class="mt-3">
                                 Do no have an account? 
