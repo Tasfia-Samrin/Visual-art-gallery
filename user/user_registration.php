@@ -112,7 +112,7 @@
                             <!-- Text and Link to Login Page -->
                             <p class="mt-3">
                                 Already have an account? 
-                                <a href="admin_login.php" class="text-primary">Login here</a>
+                                <a href="user_login.php" class="text-primary">Login here</a>
                             </p>
                         </div>
                     </form>
