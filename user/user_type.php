@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($role)) {
         switch ($role) {
             case 'customer':
-                header('Location: user_login.php'); // Redirect to customer login page
+                header('Location: ../customers_page/customer_login.php'); // Redirect to customer login page
                 exit;
             case 'admin':
                 header('Location: ../admin_page/admin_login.php'); // Redirect to admin login page
