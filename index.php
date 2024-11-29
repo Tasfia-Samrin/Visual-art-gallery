@@ -79,6 +79,8 @@ include('include/connect.php');
             }
           }
   ?>
+
+  <!--get specific art type-->
   <?php
           if(isset($_GET['arttype'])){
                $arttype_id=  $_GET['arttype'];
