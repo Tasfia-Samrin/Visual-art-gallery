@@ -37,10 +37,13 @@ if (isset($_POST['insert_art'])) {
             $insert_arts = "INSERT INTO `art_work` (id, title, arttype_id,year_created,medium,dimension,description, price, is_available, image) 
                             VALUES ('$art_id', '$art_title', '$art_type','$date','$medium','$dimension','$description', '$price', '$status', '$art_image')";
 
-            $result_query = mysqli_query($conn, $insert_arts);
+            $insert_artImg="INSERT INTO `artwork_images` (artworkID, imageURL) 
+                            VALUES ('$art_id', '$art_image')";
+            $result_query1 = mysqli_query($conn, $insert_arts);
+            $result_query2 = mysqli_query($conn, $insert_artImg);
 
             // Check if the query was successful
-            if ($result_query) {
+            if ($result_query1 && $result_query2) {
                 echo "<p style='color: green; text-align: center;'>Art successfully inserted!</p>";
             } else {
                 echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
