@@ -84,12 +84,8 @@
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($viewArt_result)): ?>
                     <tr>
-                        <td><?= htmlspecialchars($row['id']); ?></td>
-                        <?php
-                        $link_name = htmlspecialchars($row['image']);
-                        $url = htmlspecialchars($row['imageURL']);
-                        ?>
-                        <td><?php echo"<a href='$url' target='_blank'>$link_name</a>" ?></td>
+                    <td><?= htmlspecialchars($row['id']); ?></td>
+                        <td> <img src="arts_images/<?php echo $row['imageURL']; ?>"></td>
                         <td><?= htmlspecialchars($row['title']); ?></td>
                         <td><?= htmlspecialchars($row['arttype_title']); ?></td>
                         <td><?= htmlspecialchars($row['description']); ?></td>
