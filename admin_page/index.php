@@ -54,9 +54,7 @@
       if(isset($_GET['insert_types'])){
         include('insert_types.php');
       }
-      #if(isset($_GET['view_arts'])){
-        #include('view_arts.php');
-      #}
+    
 
       ?>
      </div>
