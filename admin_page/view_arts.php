@@ -57,9 +57,9 @@
     }
 
     // Query to fetch art details
-    $viewArt_query = "SELECT a.id, a.title,a.description,t.arttype_title, a.arttype_id, a.year_created, a.medium, a.dimension, a.price, a.is_available
-                      FROM art_work as a,arttype as t
-                      where t.arttype_id=a.arttype_id;";
+    $viewArt_query = "SELECT a.id, a.title,a.description,t.arttype_title, a.arttype_id, a.year_created, a.medium, a.dimension, a.price, a.is_available,ar.imageURL,a.image
+                      FROM art_work as a,arttype as t,artwork_images as ar
+                      where t.arttype_id=a.arttype_id and a.id=ar.artworkID;";
     $viewArt_result = mysqli_query($con, $viewArt_query);
 
     if (!$viewArt_result) {
@@ -70,6 +70,7 @@
             <thead>
                 <tr>
                     <th>Art ID</th>
+                    <th>Artwork</th>
                     <th>Title</th>
                     <th>Art Type</th>
                     <th>Description</th>
@@ -84,6 +85,11 @@
                 <?php while ($row = mysqli_fetch_assoc($viewArt_result)): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id']); ?></td>
+                        <?php
+                        $link_name = htmlspecialchars($row['image']);
+                        $url = htmlspecialchars($row['imageURL']);
+                        ?>
+                        <td><?php echo"<a href='$url' target='_blank'>$link_name</a>" ?></td>
                         <td><?= htmlspecialchars($row['title']); ?></td>
                         <td><?= htmlspecialchars($row['arttype_title']); ?></td>
                         <td><?= htmlspecialchars($row['description']); ?></td>
