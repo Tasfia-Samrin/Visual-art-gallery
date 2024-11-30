@@ -13,7 +13,7 @@ if (isset($_POST['insert_art'])) {
     $dimension = $_POST['dimension'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-    $status = 'true';
+   
 
     
     $art_image = $_FILES['Art_image']['name'];
@@ -34,8 +34,8 @@ if (isset($_POST['insert_art'])) {
 
             move_uploaded_file($temp_image,"./arts_images/$art_image");
             // Insert data into the art_work table
-            $insert_arts = "INSERT INTO `art_work` (id, title, arttype_id,year_created,medium,dimension,description, price, is_available, image) 
-                            VALUES ('$art_id', '$art_title', '$art_type','$date','$medium','$dimension','$description', '$price', '$status', '$art_image')";
+            $insert_arts = "INSERT INTO `art_work` (id, title, arttype_id,year_created,medium,dimension,description, price, image) 
+                            VALUES ('$art_id', '$art_title', '$art_type','$date','$medium','$dimension','$description', '$price', '$art_image')";
 
             $insert_artImg="INSERT INTO `artwork_images` (artworkID, imageURL) 
                             VALUES ('$art_id', '$art_image')";
