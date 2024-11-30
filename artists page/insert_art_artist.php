@@ -5,6 +5,8 @@ include('../include/connect.php');
 // Backend Logic
 if (isset($_POST['insert_art'])) {
     // Fetching form data using $_POST
+    $artist_email = $_POST['email'];
+    $artist_password = $_POST['password'];
     $art_id = $_POST['art_id'];
     $art_title = $_POST['art_title'];
     $art_type = $_POST['art_types'];
@@ -20,38 +22,64 @@ if (isset($_POST['insert_art'])) {
     $temp_image = $_FILES['Art_image']['tmp_name'];
 
     
-    if ($art_id == '' || $art_title == '' ||  $date == ''  || $medium == '' ||$dimension == ''  ||$description == '' || $art_type == '' || $price == '' || $art_image == '') {
+    if ($artist_email== '' ||$artist_password== '' ||$art_id== '' || $art_title == '' ||  $date == ''  || $medium == '' ||$dimension == ''  ||$description == '' || $art_type == '' || $price == '' || $art_image == '') {
         echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
     } else {
-        
+                // Check if artist email and password matches
+                $verify_match ="select * 
+                                from artist
+                                where email='$artist_email' and password='$artist_password'";
+                
 
-        // Check for duplicate art ID
-        $check_query = "SELECT * FROM art_work WHERE id = '$art_id'";
-        $check_result = mysqli_query($conn, $check_query);
-        if (mysqli_num_rows($check_result) > 0) {
-            echo "<p style='color: red; text-align: center;'>Art ID already exists. Please use a unique ID.</p>";
-        } else {
+                $check_match=mysqli_query($conn, $verify_match);
 
-            move_uploaded_file($temp_image,"./arts_images/$art_image");
-            // Insert data into the art_work table
-            $insert_arts = "INSERT INTO `art_work` (id, title, arttype_id,year_created,medium,dimension,description, price, image) 
-                            VALUES ('$art_id', '$art_title', '$art_type','$date','$medium','$dimension','$description', '$price', '$art_image')";
+                if (mysqli_num_rows($check_match ) == 0) {
+                    echo "<p style='color: red; text-align: center;'>Wrong credentials!</p>";
+                }
 
-            $insert_artImg="INSERT INTO `artwork_images` (artworkID, imageURL) 
-                            VALUES ('$art_id', '$art_image')";
-            $result_query1 = mysqli_query($conn, $insert_arts);
-            $result_query2 = mysqli_query($conn, $insert_artImg);
+                else{
+                // Check for duplicate art ID
+                $check_query = "SELECT * FROM art_work WHERE id = '$art_id'";
+                $check_result = mysqli_query($conn, $check_query);
+                if (mysqli_num_rows($check_result) > 0) {
+                    echo "<p style='color: red; text-align: center;'>Art ID already exists. Please use a unique ID.</p>";
+                }
+                // Check for duplicate art title
+                $check_query = "SELECT * FROM art_work WHERE title = '$art_title'";
+                $check_result = mysqli_query($conn, $check_query);
+                if (mysqli_num_rows($check_result) > 0) {
+                    echo "<p style='color: red; text-align: center;'>Art title already exists. Please use a unique title.</p>";
+                }
+                else {
+                    $get_id ="select id
+                                    from artist
+                                    where email='$artist_email' and password='$artist_password'";
 
-            // Check if the query was successful
-            if ($result_query1 && $result_query2) {
-                echo "<p style='color: green; text-align: center;'>Art successfully inserted!</p>";
-            } else {
-                echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
+                    $artist_data=mysqli_query($conn, $get_id);
+                    $artist_data_value = mysqli_fetch_assoc($artist_data);
+                    $artist_id = $artist_data_value['id']; 
+
+                    move_uploaded_file($temp_image,"./arts_images/$art_image");
+                    // Insert data into the art_work table
+                    $insert_arts = "INSERT INTO `art_work` (id, title,artist_id,arttype_id,year_created,medium,dimension,description, price, image) 
+                                    VALUES ('$art_id', '$art_title','$artist_id','$art_type','$date','$medium','$dimension','$description', '$price', '$art_image')";
+
+                    $insert_artImg="INSERT INTO `artwork_images` (artworkID, imageURL) 
+                                    VALUES ('$art_id', '$art_image')";
+                    $result_query1 = mysqli_query($conn, $insert_arts);
+                    $result_query2 = mysqli_query($conn, $insert_artImg);
+
+                    // Check if the query was successful
+                    if ($result_query1 && $result_query2) {
+                        echo "<p style='color: green; text-align: center;'>Art successfully inserted!</p>";
+                    } else {
+                        echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
+                          }
+                     }
+                  }
             }
         }
-    }
-}
-?>
+     ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +94,20 @@ if (isset($_POST['insert_art'])) {
     <div class="container mt-4">
         <h2 class="text-center">Insert Arts</h2>
         <form action="" method="post" enctype="multipart/form-data">
+
+         <!--Artist Email Field -->
+         <div class="form-outline mb-4 w-50 m-auto">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control"  placeholder="Enter your email" autocomplete="off"
+            required>
+         </div>
+
+          <!--Artist Password Field -->
+          <div class="form-outline mb-4 w-50 m-auto">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" autocomplete="off"
+            required>
+          </div>
 
             <!-- ID -->
             <div class="form-outline mb-4 w-50 m-auto">
