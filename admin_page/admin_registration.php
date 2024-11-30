@@ -1,3 +1,90 @@
+<?php
+// Database connection
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "online_art_gallery";
+
+$con = mysqli_connect($host, $user, $password, $database);
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST['admin_registration'])) {
+    // Fetching form data using $_POST
+    $admin_id = $_POST['id'];
+    $admin_name = $_POST['name'];
+    $admin_username = $_POST['username'];
+    $admin_email = $_POST['email'];
+    $admin_password = $_POST['password'];
+
+    if ($admin_email  == '' ||$admin_password  == ''|| $admin_email  == '' ||$admin_password  == ''  || $admin_email  == '' ||$admin_password  == '' ) {
+        echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
+    }
+    else {
+        //duplicate id,email or password check
+        $check_id ="select * 
+                   from admin 
+                   where id='$admin_id'";
+        
+
+        $check_idMatch=mysqli_query($con, $check_id);
+
+        $check_username="select * 
+                        from admin 
+                        where username='$admin_username'";
+
+
+        $check_usernameMatch=mysqli_query($con,$check_username);
+
+
+        $check_email="select * 
+                   from admin 
+                   where email='$admin_email'";
+        
+
+        $check_emailMatch=mysqli_query($con,$check_email);
+
+        $check_password="select * 
+                        from admin 
+                        where password='$admin_password'";
+        
+
+        $check_passwordMatch=mysqli_query($con,$check_password);
+
+
+        if (mysqli_num_rows($check_idMatch) > 0) {
+            echo "<p style='color: red; text-align: center;'>This id already exists!</p>";
+        }
+        else  if (mysqli_num_rows($check_usernameMatch) > 0) {
+            echo "<p style='color: red; text-align: center;'>This username already exists!</p>";
+        }
+        elseif (mysqli_num_rows($check_emailMatch) > 0) {
+            echo "<p style='color: red; text-align: center;'>This email already exists!</p>";
+        }
+        elseif (mysqli_num_rows($check_passwordMatch) > 0) {
+            echo "<p style='color: red; text-align: center;'>This password already exists!</p>";
+        }
+
+        else {
+            //insert admin info to database
+            $insert_admin="INSERT INTO `admin`(`Id`, `Name`, `Email`, `UserName`, `Password`)
+                                       VALUES ('$admin_id','$admin_name',' $admin_email','$admin_username','$admin_password')";
+            
+            $result_query = mysqli_query($con, $insert_admin);
+
+            // Check if the query was successful
+            if ($result_query) {
+                echo "<p style='color: green; text-align: center;'>Admin data successfully inserted!</p>";
+            } else {
+                echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
+            }
+        }
+     }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +148,7 @@
                         <!-- ID Field -->
                         <div class="form-outline mb-4">
                             <label for="id" class="form-label">ID</label>
-                            <input type="number" id="id" name="id" placeholder="Enter your ID"
+                            <input type="text" id="id" name="id" placeholder="Enter your ID"
                                 required class="form-control">
                         </div>
 

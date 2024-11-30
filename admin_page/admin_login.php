@@ -119,7 +119,7 @@ if (isset($_POST['admin_login'])) {
                             <!-- Text and Link to Login Page -->
                             <p class="mt-3">
                                 Do no have an account? 
-                                <a href="../user/user_registration.php" class="text-primary">Register</a>
+                                <a href="admin_registration.php" class="text-primary">Register</a>
                             </p>
                         </div>
                     </form>
