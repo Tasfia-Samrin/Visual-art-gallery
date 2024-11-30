@@ -15,29 +15,27 @@ if (isset($_POST['insert_art'])) {
     $dimension = $_POST['dimension'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-   
-
-    
     $art_image = $_FILES['Art_image']['name'];
     $temp_image = $_FILES['Art_image']['tmp_name'];
 
-    
-    if ($artist_email== '' ||$artist_password== '' ||$art_id== '' || $art_title == '' ||  $date == ''  || $medium == '' ||$dimension == ''  ||$description == '' || $art_type == '' || $price == '' || $art_image == '') {
+    if ($artist_email == '' || $artist_password == '' || $art_id == '' || $art_title == '' || $date == '' || $medium == '' || $dimension == '' || $description == '' || $art_type == '' || $price == '' || $art_image == '') {
         echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
     } else {
-                // Check if artist email and password matches
-                $verify_match ="select * 
-                                from artist
-                                where email='$artist_email' and password='$artist_password'";
-                
+        // Check if artist email and password matches
+        $verify_match = "SELECT * FROM `artist` WHERE TRIM(email)='$artist_email' and password='$artist_password'";
+        $check_match = mysqli_query($conn, $verify_match);
 
-                $check_match=mysqli_query($conn, $verify_match);
+        if (mysqli_num_rows($check_match) == 0) {
+            echo "<p style='color: red; text-align: center;'>Wrong credentials!</p>";
+        } else {
+            // Check if the artist exists and get the artist's ID
+            $get_id = "SELECT id FROM artist WHERE TRIM(email)='$artist_email' and password='$artist_password'";
+            $artist_data = mysqli_query($conn, $get_id);
 
-                if (mysqli_num_rows($check_match ) == 0) {
-                    echo "<p style='color: red; text-align: center;'>Wrong credentials!</p>";
-                }
+            if (mysqli_num_rows($artist_data) > 0) {
+                $artist_data_value = mysqli_fetch_assoc($artist_data);
+                $artist_id = $artist_data_value['id']; 
 
-                else{
                 // Check for duplicate art ID
                 $check_query = "SELECT * FROM art_work WHERE id = '$art_id'";
                 $check_result = mysqli_query($conn, $check_query);
@@ -49,23 +47,15 @@ if (isset($_POST['insert_art'])) {
                 $check_result = mysqli_query($conn, $check_query);
                 if (mysqli_num_rows($check_result) > 0) {
                     echo "<p style='color: red; text-align: center;'>Art title already exists. Please use a unique title.</p>";
-                }
-                else {
-                    $get_id ="select id
-                                    from artist
-                                    where email='$artist_email' and password='$artist_password'";
+                } else {
+                    move_uploaded_file($temp_image, "./arts_images/$art_image");
 
-                    $artist_data=mysqli_query($conn, $get_id);
-                    $artist_data_value = mysqli_fetch_assoc($artist_data);
-                    $artist_id = $artist_data_value['id']; 
-
-                    move_uploaded_file($temp_image,"./arts_images/$art_image");
                     // Insert data into the art_work table
-                    $insert_arts = "INSERT INTO `art_work` (id, title,artist_id,arttype_id,year_created,medium,dimension,description, price, image) 
-                                    VALUES ('$art_id', '$art_title','$artist_id','$art_type','$date','$medium','$dimension','$description', '$price', '$art_image')";
+                    $insert_arts = "INSERT INTO `art_work` (id, title, artist_id, arttype_id, year_created, medium, dimension, description, price, image) 
+                                    VALUES ('$art_id', '$art_title', '$artist_id', '$art_type', '$date', '$medium', '$dimension', '$description', '$price', '$art_image')";
 
-                    $insert_artImg="INSERT INTO `artwork_images` (artworkID, imageURL) 
-                                    VALUES ('$art_id', '$art_image')";
+                    $insert_artImg = "INSERT INTO `artwork_images` (artworkID, imageURL) 
+                                      VALUES ('$art_id', '$art_image')";
                     $result_query1 = mysqli_query($conn, $insert_arts);
                     $result_query2 = mysqli_query($conn, $insert_artImg);
 
@@ -74,13 +64,15 @@ if (isset($_POST['insert_art'])) {
                         echo "<p style='color: green; text-align: center;'>Art successfully inserted!</p>";
                     } else {
                         echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
-                          }
-                     }
-                  }
+                    }
+                }
+            } else {
+                echo "<p style='color: red; text-align: center;'>Artist not found. Please check your credentials.</p>";
             }
         }
-     ?>
-
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
