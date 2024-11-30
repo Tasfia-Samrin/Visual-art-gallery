@@ -23,7 +23,7 @@ if (isset($_POST['admin_registration'])) {
         echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
     }
     else {
-        //duplicate id,email or password check
+        //duplicate id,username,email or password check
         $check_id ="select * 
                    from admin 
                    where id='$admin_id'";
