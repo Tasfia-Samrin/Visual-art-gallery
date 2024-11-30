@@ -1,5 +1,48 @@
 <?php
+session_start();  // Start session to manage session variables
+
 // Database connection
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "online_art_gallery";
+$con = mysqli_connect($host, $user, $password, $database);
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST['customer_login'])) {
+    $customer_email = $_POST['email'];
+    $customer_password = $_POST['password'];
+
+    if ($customer_email == '' || $customer_password == '') {
+        echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
+    } else {
+        // Verify if the email exists
+        $verify_match = "SELECT * FROM customer WHERE email='$customer_email'";
+        $check_match = mysqli_query($con, $verify_match);
+
+        if (mysqli_num_rows($check_match) == 0) {
+            echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
+        } else {
+            $user = mysqli_fetch_assoc($check_match);
+
+            // Verify the password
+            if (password_verify($customer_password, $user['password'])) {
+                // Set the session variable after successful login
+                $_SESSION['customerID'] = $user['id'];  // Assuming 'id' is the customer ID column
+                header("Location: c_index.php");  // Redirect to the index page or user dashboard
+                exit();
+            } else {
+                // Incorrect password
+                echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
+            }
+        }
+    }
+}
+?>
+<!--// Database connection
 $host = "localhost";
 $user = "root";
 $password = "";
@@ -19,26 +62,32 @@ if (isset($_POST['customer_login'])) {
     if ($customer_email  == '' ||$customer_password  == '' ) {
         echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
     } else {
-        //Verification
-        $verify_match ="select * 
-                        from customer 
-                        where email='$customer_email' and password='$customer_password'";
-        
+        // Verification: Check if the email exists
+        $verify_match = "SELECT * FROM customer WHERE email='$customer_email'";
+        $check_match = mysqli_query($con, $verify_match);
 
-        $check_match=mysqli_query($con, $verify_match);
+        if (mysqli_num_rows($check_match) == 0) {
+            echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
+        } else {
+            // Fetch the user record
+            $user = mysqli_fetch_assoc($check_match);
 
-
-        if (mysqli_num_rows($check_match ) == 0) {
-            echo "<p style='color: red; text-align: center;'>Incorrect values!</p>";
+            // Verify the password
+            if (password_verify($customer_password, $user['password'])) {
+                // Password is correct, login successful
+                //header('Location: http://localhost/online_art_gallery/Visual-art-gallery/customers_page/index.php'); // Redirect to home or user dashboard
+                //exit;
+                echo "Login successful! <a href='c_index.php'>Click</a>";
+            } else {
+                // Incorrect password
+                echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
+            }
         }
-         else {
-            header('Location: index.php');
-        }
-     }
-    }
+    
+    }}
     
 ?>
-
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +137,7 @@ if (isset($_POST['customer_login'])) {
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center mb-5">User Login</h2>
+        <h2 class="text-center mb-5"> Login</h2>
         <div class="row d-flex justify-content-center">
             <!-- Image Section -->
             <div class="col-lg-6 col-xl-5">
@@ -120,7 +169,7 @@ if (isset($_POST['customer_login'])) {
                             <!-- Text and Link to Login Page -->
                             <p class="mt-3">
                                 Do no have an account? 
-                                <a href="../user/user_registration.php" class="text-primary">Register</a>
+                                <a href="customer_registration.php" class="text-primary">Register</a>
                             </p>
                         </div>
                     </form>

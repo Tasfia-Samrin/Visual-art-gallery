@@ -36,9 +36,9 @@
             <h1 class="h4">Visual Art Gallery</h1>
             <nav>
                 <a href="index.php" class="text-white mx-2">Home</a>
-                <a href="#" class="text-white mx-2">Gallery</a>
+                <a href="gallery.php" class="text-white mx-2">Gallery</a>
                 <a href="exhibition.php" class="text-white mx-2">Exhibitions</a>
-                <a href="#" class="text-white mx-2">Login</a>
+                <a href="user/user_type.php" class="text-white mx-2">Login</a>
             </nav>
         </div>
     </header>
