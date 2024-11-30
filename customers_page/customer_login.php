@@ -1,11 +1,10 @@
 <?php
-session_start();  // Start session to manage session variables
-
 // Database connection
 $host = "localhost";
 $user = "root";
 $password = "";
 $database = "online_art_gallery";
+
 $con = mysqli_connect($host, $user, $password, $database);
 
 if (!$con) {
@@ -16,30 +15,25 @@ if (isset($_POST['customer_login'])) {
     $customer_email = $_POST['email'];
     $customer_password = $_POST['password'];
 
-    if ($customer_email == '' || $customer_password == '') {
+    if ($customer_email  == '' ||$customer_password  == '' ) {
         echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
     } else {
-        // Verify if the email exists
-        $verify_match = "SELECT * FROM customer WHERE email='$customer_email'";
-        $check_match = mysqli_query($con, $verify_match);
+        //Verification
+        $verify_match ="select * 
+                        from customer
+                        where email='$customer_email' and password='$customer_password'";
+        
 
-        if (mysqli_num_rows($check_match) == 0) {
-            echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
-        } else {
-            $user = mysqli_fetch_assoc($check_match);
+        $check_match=mysqli_query($con, $verify_match);
 
-            // Verify the password
-            if (password_verify($customer_password, $user['password'])) {
-                // Set the session variable after successful login
-                $_SESSION['customerID'] = $user['id'];  // Assuming 'id' is the customer ID column
-                header("Location: c_index.php");  // Redirect to the index page or user dashboard
-                exit();
-            } else {
-                // Incorrect password
-                echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
-            }
+
+        if (mysqli_num_rows($check_match ) == 0) {
+            echo "<p style='color: red; text-align: center;'>Incorrect values!</p>";
         }
-    }
+         else {
+            header('Location: c_index.php');
+        }
+     }
 }
 ?>
 <!--// Database connection

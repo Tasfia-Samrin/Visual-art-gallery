@@ -1,8 +1,17 @@
 
 <?php
-include('include/connect.php');
-?>
+// Database connection
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "online_art_gallery";
 
+$con = mysqli_connect($host, $user, $password, $database);
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+?>
 <!--
 // Include the database connection
 include('include/connect.php');
@@ -160,7 +169,7 @@ if ($message) {
             if(!isset($_GET['arttype'])){
                  
             $select_query="Select * from `art_work` order by rand() limit 0,5";
-            $result_query=mysqli_query($conn,$select_query);
+            $result_query=mysqli_query($con,$select_query);
 
            // $row=mysqli_fetch_assoc($result_query);
             //echo $row['title'];
@@ -234,7 +243,7 @@ if ($message) {
 
           <?php
            $select_type="Select * from `arttype`";
-           $result_type=mysqli_query($conn,$select_type);
+           $result_type=mysqli_query($con,$select_type);
             // $row_data=mysqli_fetch_assoc($result_type);
             // echo $row_data['arttype_title']
             while($row_data=mysqli_fetch_assoc($result_type)){
