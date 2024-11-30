@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -50,7 +49,7 @@ if (!$conn) {
         ?>
                 <!--<a href="./user/user_type.php" class="text-white mx-2">Login</a>-->
             </nav>
-            <form class="form-inline ml-3">
+            <form class="form-inline ml-3" action="search_art.php" method="get">
               <input class="form-control mr-sm-2" type="search" placeholder="Search artworks..."
                aria-label="Search" name="search_data">
               <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button> -->
@@ -142,8 +141,7 @@ if (!$conn) {
           ?>
           
           
-
-          
+    
         </div>
       </div>
       <!--art type -->
