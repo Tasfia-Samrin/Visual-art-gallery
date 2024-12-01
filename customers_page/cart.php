@@ -36,42 +36,6 @@ if (mysqli_num_rows($result) > 0) {
 } 
 ?>
 
-<!--
-session_start();
-$conn = mysqli_connect('localhost', 'root', '', 'online_art_gallery');
-
-// Check for connection errors
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// Check if the user is logged in
-if (!isset($_SESSION['customerID'])) {
-    echo "<p>Please log in to view your cart.</p>";
-    exit();
-}
-
-$customer_id = $_SESSION['customerID'];
-$cart_query = "SELECT cart.*, art_work.title, art_work.price FROM cart 
-               JOIN art_work ON cart.artworkID = art_work.id
-               WHERE cart.customerID = '$customer_id'";
-
-$result = mysqli_query($conn, $cart_query);
-
-echo "<h2>Your Cart</h2>";
-
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='cart-item'>
-                <p>Title: " . $row['title'] . "</p>
-                <p>Price: $" . $row['price'] . "</p>
-                <p>Quantity: " . $row['quantity'] . "</p>
-              </div>";
-    }
-} else {
-    echo "<p>Your cart is empty.</p>";
-}
--->
 
 <!DOCTYPE html>
 <html lang="en">

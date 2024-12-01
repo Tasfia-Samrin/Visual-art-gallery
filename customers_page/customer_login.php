@@ -31,57 +31,16 @@ if (isset($_POST['customer_login'])) {
             echo "<p style='color: red; text-align: center;'>Incorrect values!</p>";
         }
          else {
+            $row = mysqli_fetch_assoc($check_match); // Fetch the row from the result
+            $customerID = $row['customerID'];       // Get the customerID from the row
+            $_SESSION['customerID'] = $customerID;
+
             header('Location: c_index.php');
         }
      }
 }
 ?>
-<!--// Database connection
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "online_art_gallery";
 
-$con = mysqli_connect($host, $user, $password, $database);
-
-if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-if (isset($_POST['customer_login'])) {
-    // Fetching form data using $_POST
-    $customer_email = $_POST['email'];
-    $customer_password = $_POST['password'];
-
-    if ($customer_email  == '' ||$customer_password  == '' ) {
-        echo "<p style='color: red; text-align: center;'>Please fill all the fields.</p>";
-    } else {
-        // Verification: Check if the email exists
-        $verify_match = "SELECT * FROM customer WHERE email='$customer_email'";
-        $check_match = mysqli_query($con, $verify_match);
-
-        if (mysqli_num_rows($check_match) == 0) {
-            echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
-        } else {
-            // Fetch the user record
-            $user = mysqli_fetch_assoc($check_match);
-
-            // Verify the password
-            if (password_verify($customer_password, $user['password'])) {
-                // Password is correct, login successful
-                //header('Location: http://localhost/online_art_gallery/Visual-art-gallery/customers_page/index.php'); // Redirect to home or user dashboard
-                //exit;
-                echo "Login successful! <a href='c_index.php'>Click</a>";
-            } else {
-                // Incorrect password
-                echo "<p style='color: red; text-align: center;'>Incorrect email or password!</p>";
-            }
-        }
-    
-    }}
-    
-?>
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>

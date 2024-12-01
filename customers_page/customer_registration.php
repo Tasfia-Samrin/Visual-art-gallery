@@ -20,7 +20,7 @@ if (isset($_POST['admin_registration'])) {
     $name = $_POST['name'];
     //$username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hash the password
+    $password = $_POST['password'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
 
