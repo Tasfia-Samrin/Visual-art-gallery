@@ -76,7 +76,8 @@ if (isset($_POST['admin_registration'])) {
 
             // Check if the query was successful
             if ($result_query) {
-                echo "<p style='color: green; text-align: center;'>Admin data successfully inserted!</p>";
+                echo "<p style='color: green; text-align: center;'> 
+                <a href='admin_login.php'>Login here</a></p>";
             } else {
                 echo "<p style='color: red; text-align: center;'>Error: " . mysqli_error($conn) . "</p>";
             }
