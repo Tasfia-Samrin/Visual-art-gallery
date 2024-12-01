@@ -18,7 +18,7 @@
             border: 1px solid black;
         }
         th, td {
-            padding: 30px;
+            padding: 5px;
             text-align: center;
         }
         .btn {
