@@ -23,10 +23,24 @@ $result_query = mysqli_query($conn, $select_query);
             <nav>
                 <a href="index.php" class="text-white mx-2">Home</a>
                 <a href="gallery.php" class="text-white mx-2">Gallery</a>
-                <a href="#" class="text-white mx-2">Artists</a>
+                <!--<a href="#" class="text-white mx-2">Artists</a>-->
                 <a href="exhibition.php" class="text-white mx-2">Exhibitions</a>
-                <a href="#" class="text-white mx-2">Login</a>
+                <?php
+        if (isset($_SESSION['logged_in_user'])) {
+          echo '<a href="user/account.php" class="text-white mx-2">Account</a>';
+        } else {
+          echo '<a href="user/user_type.php" class="text-white mx-2">Login</a>';
+        }
+        ?>
             </nav>
+
+            <form class="form-inline ml-3" action="search_art.php" method="get">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search artworks..."
+               aria-label="Search" name="search_data">
+              <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button> -->
+              <input type="submit" value="Search" class="btn btn-outline-light my-2 my-sm-0"
+              name="search_data_art">
+          </form>
         </div>
     </header>
 
@@ -53,7 +67,7 @@ $result_query = mysqli_query($conn, $select_query);
                                     <h5 class='card-title'>$art_title</h5>
                                     <p class='card-text'>$art_description</p>
                                     <a href='index.php?add_to_cart=$art_id' class='btn btn-info'>Add to cart</a>
-                                    <a href='#' class='btn btn-secondary'>View More</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -67,6 +81,7 @@ $result_query = mysqli_query($conn, $select_query);
         </div>
     </section>
 
+    
     <!-- Footer -->
     <footer class="bg-light text-dark text-center p-3">
         <p>&copy; 2024 Visual Art Gallery. All rights reserved.</p>

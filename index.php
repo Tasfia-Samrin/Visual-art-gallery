@@ -37,7 +37,7 @@ if (!$conn) {
             <nav>
                 <a href="index.php" class="text-white mx-2">Home</a>
                 <a href="gallery.php" class="text-white mx-2">Gallery</a>
-                <a href="#" class="text-white mx-2">Artists</a>
+                <!--<a href="#" class="text-white mx-2">Artists</a>-->
                 <a href="exhibition.php" class="text-white mx-2">Exhibitions</a>
 
                 <?php
@@ -94,13 +94,13 @@ if (!$conn) {
                    $art_image=$row['image'];
                echo "<div class='col-md-4 mb-2'>
             <div class='card'>
-             <img src='./admin_page\arts_images/$art_image' class='card-img-top' alt='...'>
+             <img src='./admin_page/arts_images/$art_image' class='card-img-top' alt='...'>
            
               <div class='card-body'>
                 <h5 class='card-title'>$art_title</h5>
                 <p class='card-text'>$art_description</p>
                 <a href='index.php?add_to_cart=$art_id' class='btn btn-info'>Add to cart</a>
-                <a href='#' class='btn btn-secondary'>View More</a>
+                
               </div>
             </div>
           </div>";
@@ -132,7 +132,7 @@ if (!$conn) {
                 <h5 class='card-title'>$art_title</h5>
                 <p class='card-text'>$art_description</p>
                 <a href='index.php?add_to_cart=$art_id' class='btn btn-info'>Add to cart</a>
-                <a href='#' class='btn btn-secondary'>View More</a>
+               
               </div>
             </div>
           </div>";
