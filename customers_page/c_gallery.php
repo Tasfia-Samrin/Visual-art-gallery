@@ -33,15 +33,11 @@ $result_query = mysqli_query($con, $select_query);
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="h4">Visual Art Gallery</h1>
             <nav>
-                <a href="index.php" class="text-white mx-2">Home</a>
-                <a href="gallery.php" class="text-white mx-2">Gallery</a>
+                <a href="c_index.php" class="text-white mx-2">Home</a>
+                <a href="customers_page\c_index.php" class="text-white mx-2">Gallery</a>
                 <a href="cart.php" class="text-white mx-2">Cart</a>
                 <a href="customer_logout.php" class="text-white mx-2">Logout</a>
-                <?php
-        
-       
-    
-        ?>
+              
             </nav>
 
             <form class="form-inline ml-3" action="search_art.php" method="get">
@@ -76,7 +72,7 @@ $result_query = mysqli_query($con, $select_query);
                                 <div class='card-body'>
                                     <h5 class='card-title'>$art_title</h5>
                                     <p class='card-text'>$art_description</p>
-                                    <a href='index.php?add_to_cart=$art_id' class='btn btn-info'>Add to cart</a>
+                                    <a href='c_index.php?add_to_cart=$art_id' class='btn btn-info'>Add to cart</a>
                                     
                                 </div>
                             </div>
