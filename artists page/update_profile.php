@@ -16,14 +16,14 @@ $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Accessing input values
-    $artist_id = $_POST['id'] ?? '';  // Manually entered ID
-    $artist_name = $_POST['name'] ?? '';
-    $artist_bio = $_POST['bio'] ?? '';
-    $artist_email = $_POST['email'] ?? '';
-    $artist_phone = $_POST['phone'] ?? '';
-    $artist_password = $_POST['new_password'] ?? '';
-    $artist_confirmPassword = $_POST['confirmation_password'] ?? '';
-    $artist_website = $_POST['link'] ?? '';
+    $artist_id = $_POST['id'] ; 
+    $artist_name = $_POST['name'];
+    $artist_bio = $_POST['bio'] ;
+    $artist_email = $_POST['email'] ;
+    $artist_phone = $_POST['phone'] ;
+    $artist_password = $_POST['new_password'];
+    $artist_confirmPassword = $_POST['confirmation_password'] ;
+   
 
     // Validate ID 
     if (empty($artist_id)) {
@@ -46,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert query
-    $insert_query = "INSERT INTO artist (id, name, bio, email, phone, password,details) 
-                     VALUES ('$artist_id', '$artist_name', '$artist_bio', '$artist_email', '$artist_phone', '$artist_confirmPassword','$artist_website ')";
+    $insert_query = "INSERT INTO artist (id, name, bio, email, phone, password) 
+                     VALUES ('$artist_id', '$artist_name', '$artist_bio', '$artist_email', '$artist_phone', '$artist_confirmPassword')";
 
     $result = mysqli_query($con, $insert_query);
 
@@ -160,10 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" id="confirm_password" name="confirmation_password" placeholder="Confirm your new password">
             
              
-            <!--  Website -->
-            <label for="link">Website</label>
-            <input type="url" id="link" name="link" class="form-control" placeholder="Enter your website link" required> 
-
 
             <!-- Submit Button -->
             <button type="submit">Update Profile</button>
