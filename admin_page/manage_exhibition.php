@@ -4,6 +4,8 @@ include('../include/connect.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_exhibition'])) {
         // Collect input values for adding an exhibition
+        $admin_email = $_POST['email'];
+        $admin_password = $_POST['password'];
         $exhibition_title = $_POST['title'];
         $exhibition_description = $_POST['description'] ;
         $exhibition_StartDate = $_POST['start_date'] ;
@@ -15,7 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $artwork4_id = $_POST['artwork4'] ;
         $artwork5_id = $_POST['artwork5'] ;
 
+        // Check if admin email and password matches
+        $verify_match = "SELECT id FROM `admin` WHERE TRIM(email)='$admin_email' and password='$admin_password'";
+        $check_match = mysqli_query($conn, $verify_match);
+
+        if (mysqli_num_rows($check_match) == 0) {
+            echo "<p style='color: red; text-align: center;'>Wrong credentials!</p>";
+        }
+     else{
+            
         // Check if title already exists
+        $get_id = "SELECT id FROM admin WHERE TRIM(email)='$admin_email' and password='$admin_password'";
+            $admin_data = mysqli_query($conn, $get_id);
+
+     if (mysqli_num_rows($admin_data) > 0) {
+                $admin_data_value = mysqli_fetch_assoc($admin_data);
+                $admin_id = $admin_data_value['id']; 
 
         $check_query = "SELECT * from exhibition WHERE name ='$exhibition_title'";
         $check_result = mysqli_query($conn, $check_query);
@@ -34,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $check_query5 = "SELECT * from art_work WHERE id ='$artwork5_id'";
         $check_result5 = mysqli_query($conn, $check_query5);
-
+        
         if (mysqli_num_rows($check_result) > 0) {
             echo "<p style='color: red; text-align: center;'>This exhibition title is already present in the database.</p>";
         }
@@ -56,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         else{
             // Insert into database
-            $insert_query1 = "INSERT INTO exhibition (name, description, start_date, end_date, location)
-                             VALUES ('$exhibition_title','$exhibition_description','$exhibition_StartDate', '$exhibition_EndDate','$exhibition_location')";
+            $insert_query1 = "INSERT INTO exhibition (name,admin_id,description, start_date, end_date, location)
+                             VALUES ('$exhibition_title','$admin_id','$exhibition_description','$exhibition_StartDate', '$exhibition_EndDate','$exhibition_location')";
 
            $result1=mysqli_query($conn,$insert_query1);
            
@@ -74,6 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            }
         }
     }
+    }
+}
     else if (isset($_POST['delete_exhibition'])) {
     // Collect input values for deleting an exhibition
     $exhibition_title = $_POST['exhibition_title'];
@@ -128,12 +147,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-       
+        <h1 class="text-center mb-5">Manage Exhibitions</h1>
 
         <!-- Add Exhibition Form -->
         <div class="form-section">
             <h2 class="text-center">Add Exhibition</h2>
             <form method="POST">
+
+        <!--Admin Email Field -->
+         <div class="form-group">
+            <label for="email" >Email</label>
+            <input type="email" id="email" name="email" class="form-control"  placeholder="Enter your email" autocomplete="off" required>
+         </div>
+
+          <!--Admin Password Field -->
+          <div class="form-group">
+            <label for="password" >Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" autocomplete="off" required>
+          </div>
+
     <div class="form-group">
         <label for="title">Exhibition Title</label>
         <input type="text" id="title" name="title" class="form-control" placeholder="Enter exhibition title" required>
