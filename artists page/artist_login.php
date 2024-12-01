@@ -87,7 +87,7 @@ if (isset($_POST['artist_login'])) {
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center mb-5">User Login</h2>
+        <h2 class="text-center mb-5">Artist Login</h2>
         <div class="row d-flex justify-content-center">
             <!-- Image Section -->
             <div class="col-lg-6 col-xl-5">
