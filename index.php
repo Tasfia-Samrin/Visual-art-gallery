@@ -94,7 +94,7 @@ if (!$conn) {
                    $art_image=$row['image'];
                echo "<div class='col-md-4 mb-2'>
             <div class='card'>
-             <img src='./admin_page/arts_images/$art_image' class='card-img-top' alt='...'>
+             <img src='./artists_page/arts_images/$art_image' class='card-img-top' alt='...'>
            
               <div class='card-body'>
                 <h5 class='card-title'>$art_title</h5>
@@ -127,7 +127,7 @@ if (!$conn) {
                    $art_image=$row['image'];
                echo "<div class='col-md-4 mb-2'>
             <div class='card'>
-             <img src='./admin_page\arts_images/$art_image' class='card-img-top' alt='...'>
+             <img src='./artists_page\arts_images/$art_image' class='card-img-top' alt='...'>
               <div class='card-body'>
                 <h5 class='card-title'>$art_title</h5>
                 <p class='card-text'>$art_description</p>
