@@ -22,7 +22,8 @@ if (isset($_POST['admin_login'])) {
         //Verification
         $verify_match ="select * 
                         from admin 
-                        where email='$admin_email' and password='$admin_password'";
+                        where trim(email)='$admin_email' and password='$admin_password'";
+                        
         
 
         $check_match=mysqli_query($con, $verify_match);
