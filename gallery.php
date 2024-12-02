@@ -66,7 +66,11 @@ $result_query = mysqli_query($conn, $select_query);
                         echo "
                         <div class='col-md-4 mb-4'>
                             <div class='card'>
+<<<<<<< HEAD
                                 <img src='./artists page/arts_images/{$art_image}' class='img-fluid' alt='{$art_title}'  object-fit: cover;'>
+=======
+                                <img src='./artists page/arts_images/{$art_image}' class='img-fluid' alt='{$art_title}''class='img-fluid' style='max-width: 300px;'>
+>>>>>>> 93c79ee8fa1ea43b3494cc6efff44c8074dec0b6
                                 <div class='card-body'>
                                     <h5 class='card-title'>$art_title</h5>
                                     <p class='card-text'>$art_description</p>

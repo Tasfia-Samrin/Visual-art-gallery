@@ -59,7 +59,7 @@ if (!$conn) {
                         $art_title = $row['title'];
                         $art_description = $row['description'];
                         $art_price = $row['price'];
-                        $art_image = $row['imageURL']; // Updated to match database column name
+                        $art_image = $row['imageURL']; 
 
                         echo "
                         <div class='col-md-4 mb-2'>
