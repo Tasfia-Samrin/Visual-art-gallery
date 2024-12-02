@@ -1,6 +1,6 @@
 <?php
+// Database connection
 $conn = mysqli_connect('localhost', 'root', '', 'online_art_gallery');
-
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -34,28 +34,37 @@ if (!$conn) {
         </div>
     </header>
 
-    <!-- Search Results -->
+    <!-- Search Results Section -->
     <section class="container mt-5">
         <h2 class="text-center mb-4">Search Results</h2>
         <div class="row">
             <?php
             if (isset($_GET['search_data_art'])) {
-                $search_data_value = $_GET['search_data'];
-                $search_query = "SELECT * FROM `art_work` WHERE title LIKE '%$search_data_value%'";
+                // Get search input and escape to prevent SQL injection
+                $search_data_value = mysqli_real_escape_string($conn, $_GET['search_data']);
+                
+                // Search query
+                $search_query = "
+                    SELECT aw.id, aw.title, aw.description, aw.price, ai.imageURL
+                    FROM art_work aw
+                    LEFT JOIN artwork_images ai ON aw.id = ai.artworkID
+                    WHERE aw.title LIKE '%$search_data_value%' OR aw.description LIKE '%$search_data_value%'
+                ";
                 $result_query = mysqli_query($conn, $search_query);
 
+                // Check if any results were found
                 if (mysqli_num_rows($result_query) > 0) {
                     while ($row = mysqli_fetch_assoc($result_query)) {
                         $art_id = $row['id'];
                         $art_title = $row['title'];
                         $art_description = $row['description'];
                         $art_price = $row['price'];
-                        $art_image = $row['image'];
+                        $art_image = $row['imageURL']; // Updated to match database column name
 
                         echo "
                         <div class='col-md-4 mb-2'>
                             <div class='card'>
-                                <img src='./admin_page/arts_images/$art_image' class='card-img-top' alt='Art Image'>
+                                <img src='./artists page/arts_images/{$art_image}' class='img-fluid'  object-fit: cover;>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$art_title</h5>
                                     <p class='card-text'>$art_description</p>
@@ -79,3 +88,4 @@ if (!$conn) {
     </footer>
 </body>
 </html>
+
