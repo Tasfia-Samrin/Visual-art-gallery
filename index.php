@@ -88,7 +88,7 @@ if (!$conn) {
 
                 echo "<div class='col-md-4 mb-2'>
                         <div class='card'>
-                            <img src='./artists_page/arts_images/$art_image' class='card-img-top' alt='...'>
+                             <img src='./artists page/arts_images/{$row['imageURL']}' class='img-fluid' style='max-width: 300px;'>
                             <div class='card-body'>
                                 <h5 class='card-title'>$art_title</h5>
                                 <p class='card-text'>$art_description</p>
@@ -108,8 +108,7 @@ if (!$conn) {
             // Select query to join art_work and artwork_images based on arttype_id
             $select_query = "SELECT aw.id, aw.title, aw.arttype_id, aw.description, aw.price, ai.imageURL
                              FROM art_work aw
-                             JOIN artwork_images ai ON aw.id = ai.artworkID
-                             WHERE aw.arttype_id = $arttype_id";
+                             JOIN artwork_images ai ON aw.id = ai.artworkID";
             $result_query = mysqli_query($conn, $select_query);
             $num_of_rows = mysqli_num_rows($result_query);
 
@@ -130,9 +129,10 @@ if (!$conn) {
                 $art_price = $row['price'];
                 $art_image = $row['imageURL'];  
 
+        
                 echo "<div class='col-md-4 mb-2'>
                         <div class='card'>
-                            <img src='./artists_page/arts_images/$art_image' class='card-img-top' alt='...'>
+                        <img src='./artists page/arts_images/{$row['imageURL']}'class='img-fluid' style='max-width: 300px;'>
                             <div class='card-body'>
                                 <h5 class='card-title'>$art_title</h5>
                                 <p class='card-text'>$art_description</p>
